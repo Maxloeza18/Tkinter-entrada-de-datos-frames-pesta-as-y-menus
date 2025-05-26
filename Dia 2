@@ -1,0 +1,49 @@
+"Dia 2"
+import tkinter as tk
+from tkinter import ttk
+
+# Crear ventana principal
+ventana = tk.Tk()
+ventana.title("Organización con Frame y Notebook")
+ventana.geometry("400x300")
+
+# Crear Notebook
+notebook = ttk.Notebook(ventana)
+notebook.pack(fill='both', expand=True)
+
+# Pestaña 1: Ingreso de datos
+pestana_datos = tk.Frame(notebook, bg="lightblue")
+notebook.add(pestana_datos, text="Ingreso de Datos")
+
+# Pestaña 2: Resultados
+pestana_resultados = tk.Frame(notebook, bg="lightgreen")
+notebook.add(pestana_resultados, text="Resultados")
+
+# Frame de entrada dentro de pestaña de datos
+frame_entrada = tk.Frame(pestana_datos, bg="lightblue")
+frame_entrada.pack(pady=10)
+
+tk.Label(frame_entrada, text="Nombre:", bg="lightblue").grid(row=0, column=0, padx=5, pady=5)
+entrada_nombre = tk.Entry(frame_entrada)
+entrada_nombre.grid(row=0, column=1, padx=5, pady=5)
+
+tk.Label(frame_entrada, text="Edad:", bg="lightblue").grid(row=1, column=0, padx=5, pady=5)
+entrada_edad = tk.Entry(frame_entrada)
+entrada_edad.grid(row=1, column=1, padx=5, pady=5)
+
+# Frame de botones dentro de la misma pestaña
+frame_botones = tk.Frame(pestana_datos, bg="lightblue")
+frame_botones.pack(pady=10)
+
+def mostrar_resultado():
+    nombre = entrada_nombre.get()
+    edad = entrada_edad.get()
+    resultado_label.config(text=f"Nombre: {nombre}\nEdad: {edad}")
+
+tk.Button(frame_botones, text="Procesar", command=mostrar_resultado).pack()
+
+# Contenido de la pestaña de resultados
+resultado_label = tk.Label(pestana_resultados, text="Aquí se mostrarán los resultados", bg="lightgreen")
+resultado_label.pack(pady=20)
+
+ventana.mainloop()
