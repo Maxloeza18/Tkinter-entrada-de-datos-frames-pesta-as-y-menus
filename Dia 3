@@ -1,0 +1,47 @@
+"Dia 3"
+import tkinter as tk
+from tkinter import messagebox
+
+# Función para salir del programa
+def salir():
+    ventana.quit()
+
+# Función para mostrar información
+def mostrar_acerca_de():
+    messagebox.showinfo("Acerca de", "Esta es una app de ejemplo con menús.")
+
+# Función para cambiar el color del fondo
+def cambiar_color(color):
+    frame_principal.config(bg=color)
+
+# Crear la ventana principal
+ventana = tk.Tk()
+ventana.title("Menús y Eventos")
+ventana.geometry("400x300")
+
+# Frame principal que cambiará de color
+frame_principal = tk.Frame(ventana, bg="white")
+frame_principal.pack(fill='both', expand=True)
+
+# Crear la barra de menú
+barra_menu = tk.Menu(ventana)
+ventana.config(menu=barra_menu)
+
+# Menú Archivo
+menu_archivo = tk.Menu(barra_menu, tearoff=0)
+menu_archivo.add_command(label="Salir", command=salir)
+barra_menu.add_cascade(label="Archivo", menu=menu_archivo)
+
+# Menú Ayuda
+menu_ayuda = tk.Menu(barra_menu, tearoff=0)
+menu_ayuda.add_command(label="Acerca de", command=mostrar_acerca_de)
+barra_menu.add_cascade(label="Ayuda", menu=menu_ayuda)
+
+# Submenú para cambiar color de fondo
+menu_color = tk.Menu(barra_menu, tearoff=0)
+menu_color.add_command(label="Rojo", command=lambda: cambiar_color("red"))
+menu_color.add_command(label="Verde", command=lambda: cambiar_color("green"))
+menu_color.add_command(label="Azul", command=lambda: cambiar_color("blue"))
+barra_menu.add_cascade(label="Color de fondo", menu=menu_color)
+
+ventana.mainloop()
